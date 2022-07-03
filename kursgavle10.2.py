@@ -10,13 +10,7 @@ def utför_beräkning(operand_1, räknesätt, operand_2):
     elif räknesätt == "*":
         return operand_1 * operand_2
     elif räknesätt == "/":
-        if operand_2 == 0:
-            print("Error: Division med 0")
-            return None
         return operand_1 / operand_2
-    else:
-        print("Error: Felaktig operator!")
-        return None
 
 
 while True:
@@ -24,8 +18,15 @@ while True:
     lista_inmatad_beräkning = inmatad_beräkning.split()
     operand_1 = float(lista_inmatad_beräkning[0])
     räknesätt = lista_inmatad_beräkning[1]
+    if räknesätt != "+" and räknesätt != "-" and räknesätt != "*" and räknesätt != "/":
+        print("Error: Felaktig operator!")
+        print()
+        continue
     operand_2 = float(lista_inmatad_beräkning[2])
+    if operand_2 == 0 and räknesätt == "/":
+        print("Error: Division med 0")
+        print()
+        continue
     resultat = utför_beräkning(operand_1, räknesätt, operand_2)
-    if resultat is not None:
-        print(f"{operand_1} {räknesätt} {operand_2} = {resultat}")
+    print(f"{operand_1} {räknesätt} {operand_2} = {resultat}")
     print()
